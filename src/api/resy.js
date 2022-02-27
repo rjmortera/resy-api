@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
     getVenue(slug, location)
         .then(id => {
-            res.json({
+            res.status(200).json({
                 // slug: slug,
                 // location: location,
                 venueId: id,
