@@ -19,6 +19,11 @@ router.get('/', (req, res) => {
                 exampleFormat: `${new Date().toISOString().split('T')[0]},2,${id}`
             });
         })
+        .catch(() => {
+            res.status(404).json({
+                error: "Couldn't find a venue with that slug and location."
+            });
+        });
 });
 
 const getVenue = async (slug, location) => {
