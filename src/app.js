@@ -19,8 +19,6 @@ app.get('/', (req, res) => {
   });
 
 app.use('/api/v1', api);
-app.use('/api/resy', api);
-
 app.use(m.brokenPage);
 
 module.exports = app;
