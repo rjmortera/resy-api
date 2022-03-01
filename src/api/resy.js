@@ -2,6 +2,8 @@ const express = require('express');
 const request = require('request-promises');
 const router = express.Router();
 
+const listofReqs = [];
+
 router.get('/', (req, res) => {
     const { location, slug } = req.query;
     if (!location || !slug) {
@@ -18,12 +20,25 @@ router.get('/', (req, res) => {
                 venueId: id,
                 exampleFormat: `${new Date().toISOString().split('T')[0]},2,${id}`
             });
+            listofReqs.push({
+                slug: slug,
+                location: location,
+                venueId: id,
+                timestamp: new Date().toString()
+            });
         })
         .catch(() => {
             res.status(404).json({
                 error: "Couldn't find a venue with that slug and location."
             });
         });
+});
+
+
+router.get('/list', (req, res) => {
+
+    res.status(200).json(listofReqs);
+
 });
 
 const getVenue = async (slug, location) => {

@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
     res.status(404).json({
-      error: 'hi from Krev!'
+      message: 'hi from Krev!'
     });
   });
 
